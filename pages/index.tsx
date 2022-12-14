@@ -19,7 +19,9 @@ export default function Home() {
         <p className={styles.description}>
           martianmaikel
         </p>
-
+        <p className={styles.description}>
+          deployment script
+        </p>
         {/* <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
             <h2>Documentation &rarr;</h2>
