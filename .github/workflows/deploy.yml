@@ -11,18 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
     - name: ssh connect
-      uses: appleboy/ssh-action@master
+      uses: fifsky/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
+        user: ${{ secrets.USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.PORT }}
-        script: |
+        command: |
           cd ${{ secrets.TARGET }}
           git pull origin main
           git status
-          nvm use --lts
           npm install
           npm run build
-          pm2 restart martianmaikel-portfolio
-          pm2 status
