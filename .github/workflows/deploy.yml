@@ -21,6 +21,7 @@ jobs:
           cd ${{ secrets.TARGET }}
           git pull origin main
           git status
+          nvm use --lts
           npm install
           npm run build
           pm2 restart martianmaikel-portfolio

@@ -20,7 +20,7 @@ export default function Home() {
           martianmaikel
         </p>
         <p className={styles.description}>
-          update 1
+          update 2
         </p>
         {/* <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
