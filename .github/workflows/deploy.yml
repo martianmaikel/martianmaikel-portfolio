@@ -6,20 +6,16 @@ on:
     branches: [ main ]
 
 jobs:
-  job_one:
+  deploy:
     name: Deploy
     runs-on: ubuntu-latest
     steps: 
-    - name: ssh connect
-      uses: fifsky/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        user: ${{ secrets.USER }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        port: ${{ secrets.PORT }}
-        command: |
-          cd ${{ secrets.TARGET }}
-          git pull origin main
-          git status
-          npm install
-          npm run build
+      - uses: actions/checkout@v1
+      - name: Node 18.12.1
+        uses: actions/setup-node@v1
+        with: 
+          node-version: 18.12.3
+        - name: npm i and build
+          run: |
+            npm install
+            npm run build
