@@ -9,16 +9,17 @@ jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    
+
     steps: 
-      - uses: actions/checkout@v1
+      - name: Setup Checkout
+        uses: actions/checkout@v1
 
       - name: Node 18
         uses: actions/setup-node@v1
         with: 
           node-version: 18
       - name: npm i and build
-      - run: |
+        run: |
           npm install
           npm run build
       - name: push to server
