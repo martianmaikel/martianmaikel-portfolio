@@ -6,29 +6,20 @@ on:
     branches: [ main ]
 
 jobs:
-  deploy:
+  job_one:
     name: Deploy
-    runs-on: ubuntu-latest
-
+    runs-on: self-hosted
     steps: 
-      - name: Setup Checkout
-        uses: actions/checkout@v1
-
-      - name: Node 18
-        uses: actions/setup-node@v1
-        with: 
-          node-version: 18
-      - name: npm i and build
-        run: |
+    - name: ssh connect
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd ${{ secrets.TARGET }}
+          git pull origin main
+          git status
           npm install
           npm run build
-      - name: push to server
-        uses: appleboy/ssh-action@master
-        with: 
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            cd ${{ secrets.TARGET }}
-            git pull origin main
