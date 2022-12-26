@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
+import PictureMe from '../public/assets/ai-portrait-2.jpg'
 
 type Props = {}
 
@@ -38,7 +39,7 @@ export default function Hero({ }: Props) {
                         from-grad-l via-grad-mid to-grad-r p-1.5 bg-gradient-to-r
                         bg-[length:400%_400%] "></div>
                 <Image
-                    src='/../public/assets/ai-portrait-2.jpg'
+                    src={PictureMe}
                     alt='Maikel Szymanski - Web Entwicklung'
                     width={250}
                     height={250}
