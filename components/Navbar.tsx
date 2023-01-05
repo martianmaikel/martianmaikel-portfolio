@@ -43,7 +43,16 @@ export default function Navbar({ }: Props) {
   const [open, setOpen] = useState(false);
   return (
 
-    <aside className={`${open ? "" : ""} fixed md:ml-6 flex items-center h-screen z-10`}
+    <motion.aside className={`${open ? "" : ""} fixed md:ml-6 flex items-center h-screen z-10`}
+      initial={{
+        left: -500
+      }}
+      animate={{
+        left: 0
+      }}
+      transition={{
+        duration: 1.3
+      }}
       aria-label='sidebar'>
       <div className={`${open ? "w-44" : "w-20"} glass p-2 rounded-2xl w-100 relative transition-all duration-200 shadow-inner border border-bg-dark/10`}>
 
@@ -86,7 +95,7 @@ export default function Navbar({ }: Props) {
       </div>
 
 
-    </aside >
+    </motion.aside >
 
   )
 }

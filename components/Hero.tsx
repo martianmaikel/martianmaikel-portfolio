@@ -26,7 +26,17 @@ export default function Hero({ }: Props) {
         delaySpeed: 2000
     })
     return (
-        <div className='h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden'>
+        <motion.div className='h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden'
+            initial={{
+                scale: 0
+            }}
+            animate={{
+                scale: 1
+            }}
+            transition={{
+                duration: 0.8
+            }}
+        >
             <h2 className='text-3xl'>
                 ✌️
                 {text}
@@ -78,6 +88,6 @@ export default function Hero({ }: Props) {
             <button className='btn'>
                 Kontakt
             </button>
-        </div>
+        </motion.div>
     )
 }
