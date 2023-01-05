@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from "next/link";
+import Image from "next/image";
 import ThemeToggle from '../components/ThemeToggle'
+import SocialIcons from '../components/Social'
 import { motion } from 'framer-motion';
 import * as Fa from 'react-icons/fa'
+import Logo from '../public/assets/mm-logo-sm.png'
+
 // import * as Const from '../const';
 
 type Props = {};
@@ -30,52 +34,59 @@ const navContent = [
   },
   {
     name: "contact()",
-    path: "/",
+    path: "",
     icon: <Fa.FaRegEnvelope />
   },
 ];
 
 export default function Navbar({ }: Props) {
+  const [open, setOpen] = useState(false);
   return (
-    <motion.aside
-      initial={{
-        y: -2000,
-        opacity: 0.8,
-        scale: 0
-      }}
-      animate={{
-        y: 0,
-        opacity: 1,
-        scale: 1
-      }}
-      transition={{
-        duration: 1.7
-      }}
 
-      className='fixed flex flex-col h-screen items-center justify-center text-text-light ml-3'
-      aria-label='Sidebar'>
-      <ul>
-        {navContent.map((value, key) => {
-          return (
+    <aside className={`${open ? "" : ""} fixed md:ml-6 flex items-center h-screen z-10`}
+      aria-label='sidebar'>
+      <div className={`${open ? "w-44" : "w-20"} glass p-2 rounded-2xl w-100 relative transition-all duration-200 shadow-inner border border-bg-dark/10`}>
 
-            <li key={value.name} className='rounded-full bg-space-blue md:text-xl sm:text-lg hover:ring-2 ring-space-blue dark:hover:ring-text-light transition-all duration-300 focus:outline-none dark:bg-text-light'>
-              <Link className='group p-3 my-2 flex justify-center items-center w-full text-text-light hover:text-[#fff] transition-all delay-100 dark:text-text-dark' href='{ link.path }'>
-                <div className='hidden group-hover:ease-in duration-200'>
-                  {value.name}
-                </div>
-                <div>
-                  {value.icon}
-                </div>
-              </Link>
-            </li>
+        <Fa.FaChevronRight className={`${open ? "rotate-180" : ""}
+           absolute cursor-pointer -right-3 -top-0 w-6 h-6 bg-bg-light text-text-dark 
+           rounded-full p-1 transition-all duration-700 hover:bg-orange border border-bg-dark/40`}
+          onClick={() => setOpen(!open)}
+        />
 
-          )
-        })}
-      </ul>
+        <Link href='/' className='flex justify-center items-center'>
+          <Image
+            src={Logo}
+            alt='martianmaikel - Logo'
+            width={200}
+            height={200}
+            className="my-5 h-auto w-12 object-center"
+          />
+        </Link>
+        <ul>
 
-      <ThemeToggle></ThemeToggle>
+          {navContent.map((value, key) => {
+            return (
 
-    </motion.aside>
+              <li key={value.name}>
+                <Link className={`sidebar-icon nav-icon ${open ? "justify-start" : ""} `} href='{ link.path }'>
+                  <div className={`${open ? "" : ""} `}>
+                    {value.icon}
+                  </div>
+                  <div className={`${open ? "scale-100 duration-300" : "scale-0 hidden duration-100"} ml-4 text-sm`}>
+                    {value.name}
+                  </div>
+                </Link>
+              </li>
+
+            )
+          })}
+          <ThemeToggle></ThemeToggle>
+          <SocialIcons></SocialIcons>
+        </ul>
+      </div>
+
+
+    </aside >
 
   )
 }

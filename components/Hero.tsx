@@ -1,9 +1,20 @@
 import React from 'react'
 import Image from 'next/image'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
+import { motion } from 'framer-motion';
 import PictureMe from '../public/assets/ai-portrait-2.jpg'
 
 type Props = {}
+
+const skillTags = [
+    'HtmlCSS',
+    'SQL',
+    'PHP',
+    'JavaScript',
+    'C/C++',
+    'Frontend',
+    'Backend'
+]
 
 export default function Hero({ }: Props) {
     const [text, count] = useTypewriter({
@@ -29,9 +40,9 @@ export default function Hero({ }: Props) {
 
             <div className='relative group'>
                 <div className="absolute 
-                        -inset-1 
+                        -inset-3
                         animate-border 
-                        opacity-60 
+                        opacity-50 
                         group-hover:opacity-100 
                         group-hover:duration-500 
                         duration-700 blur 
@@ -41,23 +52,32 @@ export default function Hero({ }: Props) {
                 <Image
                     src={PictureMe}
                     alt='Maikel Szymanski - Web Entwicklung'
-                    width={250}
-                    height={250}
-                    className='rounded-full relative shadow-2xl h-44 w-44 mx-auto object-cover leading-none '
+                    width={500} height={500}
+                    className='rounded-full relative h-44 w-44 mx-auto object-cover leading-none '
                 />
             </div>
 
 
 
             <div className='max-w-sm'>
-                <p className='skilltag'>HTML & CSS</p>
-                <p className='skilltag'>Next JS</p>
-                <p className='skilltag'>PHP</p>
-                <p className='skilltag'>MySQL</p>
+                {/* {
+                    skillTags.map((value, key) => {
+                        return (
+                            <p
+                                className='skilltag'>
+                                #{value}
+                            </p>
+                        )
+                    })
+                } */}
+
             </div>
 
             <h4>lorem ipsum</h4>
-            <button className='btn'>Kontakt</button>
+
+            <button className='btn'>
+                Kontakt
+            </button>
         </div>
     )
 }

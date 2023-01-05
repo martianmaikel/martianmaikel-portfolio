@@ -20,17 +20,48 @@
     @apply cursor-pointer;
   }
   button.btn {
-    @apply shadow-xl
-      rounded-xl 
-      p-3 
-      uppercase 
-      font-bold
-      bg-gradient-to-r from-orange via-grad-l to-orange-lighter 
-      bg-size-300 bg-pos-0 hover:bg-pos-100
-      transition-all ease-in-out duration-500
-      text-text-dark;
+    @apply rounded-lg p-3 uppercase font-bold
+      border-bg-darker
+      dark:border-orange border-2
+      hover:scale-95
+      active:scale-90
+      transition-all ease-in-out duration-100
+      dark:text-text-light;
+  }
+  button.btn .grad {
+    @apply absolute
+      -inset-1;
   }
   p.skilltag {
-    @apply rounded-lg bg-orange p-1 text-xs font-bold inline-block m-1 cursor-default text-text-dark;
+    @apply rounded-full bg-orange p-1 text-xs font-bold inline-block m-1 cursor-default text-text-dark text-opacity-90;
+  }
+
+  .glass {
+    @apply backdrop-blur bg-grey-light dark:bg-bg-dark;
+  }
+
+  .twitter {
+    @apply bg-twitter;
+  }
+  .instagram {
+    @apply bg-instagram;
+  }
+  .linkedin {
+    @apply bg-linkedin;
+  }
+  .github {
+    @apply bg-[#6e5494];
+  }
+}
+
+@layer components {
+  .sidebar-icon {
+    @apply flex items-center justify-center p-3 text-xl mt-2 mb-2 mx-auto shadow-lg rounded-md hover:rounded-xl
+    transition-all duration-200 ease-linear;
+  }
+  .nav-icon {
+    @apply bg-bg-light text-text-dark
+  dark:bg-bg-darker hover:dark:text-text-dark dark:text-text-light
+  hover:dark:bg-orange hover:bg-orange;
   }
 }
