@@ -6,13 +6,13 @@ import Image from "next/image";
 import React, { useState, useEffect } from 'react'
 import Logo from '../public/assets/mm-logo-sm.png'
 
-export default function App({ Component, pageProps, router }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 1500)
+    }, 1000)
   }, [])
   return (
     <ThemeProvider enableSystem={true} attribute="class">
@@ -21,17 +21,13 @@ export default function App({ Component, pageProps, router }: AppProps) {
           <div className={` dark:bg-bg-darker bg-bg-lighter w-full min-h-screen flex justify-center items-center`}>
             <motion.div
               initial={{
-                scale: 0,
-                rotate: 0
+                scale: 0.7,
               }}
               animate={{
-                scale: 1,
-                rotate: 360
+                scale: [1, 1.2, 1, 1.2, 1, 1.4, 0],
               }}
               transition={{
                 duration: 0.8,
-                repeat: 1,
-                repeatType: "reverse"
               }}
 
               className="h-20 w-20 rounded-full bg-gray-200 ">
@@ -43,6 +39,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
               />
             </motion.div>
           </div>
+
           :
 
           <Component {...pageProps} />

@@ -24,7 +24,8 @@ module.exports = {
       'white': '#fff',
       'twitter': '#1DA1F2',
       'linkedin': '#0e76a8',
-      'instagram': '#C13584'
+      'instagram': '#C13584',
+      'github': '#6e5494'
     },
     fontFamily: {
 

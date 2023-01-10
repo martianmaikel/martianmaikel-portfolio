@@ -7,7 +7,8 @@ import Skills from '../components/Skills';
 
 export default function Home() {
   return (
-    <div className='dark:bg-bg-darker dark:text-text-light h-screen snap-y snap-mandatory overflow-scroll z-0 scrollbar-thin scrollbar-track-text-light dark:scrollbar-track-bg-darker scrollbar-thumb-orange'>
+    <div className='dark:bg-bg-darker dark:text-text-light dark:scrollbar-track-bg-darker
+    h-screen snap-y snap-mandatory overflow-scroll z-0 scrollbar-track-text-light  scrollbar-thumb-orange scrollbar-thin'>
       <Head>
         <title>Portfolio - Maikel Szymanski - Web Etnwicklung | Pirna</title>
         <meta
