@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    "./app/**/*.tsx",
     "./pages/**/*.tsx",
     "./components/**/*.tsx",
   ],
@@ -28,13 +29,38 @@ module.exports = {
       'github': '#6e5494'
     },
     fontFamily: {
-
+      pixel: 'PressStart2P, cursive',
+      mono: 'MajorMonoDisplay, monospace',
+      console: 'FragmentMono, monospace',
+      standard: 'Poppins, sans-serif',
     },
     extend: {
+      cursor: {
+        // 'default': 'url("/assets/cursor.png"), default',
+        // 'pointer': 'url("/assets/cursor-pointer.png"), pointer',
+      },
       animation: {
-        border: 'border 6s ease infinite'
+        border: 'border 6s ease infinite',
+        'blob-slow': 'blob 70s infinite',
+        'blob-fast': 'blob 20s infinite',
+        'blob-md': 'blob 40s infinite',
+        blink: 'blink 1s step-end infinite',
       },
       keyframes: {
+        blob: {
+          "0%": {
+            transform: "scale(1) transform(0px, 0px)",
+          },
+          "33%": {
+            transform: "scale(1.7)",
+          },
+          "66%": {
+            transform: "scale(0.9) transform(0px, 70px)",
+          },
+          "100%": {
+            transform: "scale(1) transform(0px, 0px)",
+          }
+        },
         border: {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
@@ -49,5 +75,5 @@ module.exports = {
       }
     },
   },
-  plugins: [require('tailwind-scrollbar')],
+  plugins: [require('tailwind-scrollbar'), require('tailwindcss-filters')],
 }

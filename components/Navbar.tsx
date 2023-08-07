@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from "next/link";
 import Image from "next/image";
-import ThemeToggle from '../components/ThemeToggle'
-import SocialIcons from '../components/Social'
+import ThemeToggle from './Shared/ThemeToggle'
+import SocialIcons from './Shared/Social'
 import { motion } from 'framer-motion';
 import * as Fa from 'react-icons/fa'
 import Logo from '../public/assets/mm-logo-sm.png'
 import { Divide as Hamburger } from 'hamburger-react'
+import ScrollToLink from './Shared/ScrollToLink';
 
 // import * as Const from '../const';
 
@@ -16,33 +19,58 @@ const navContent = [
   {
     name: "start()",
     path: "/",
-    icon: <Fa.FaHome />
+    icon: <Fa.FaHome />,
+    link: 'hero'
   },
   {
     name: "skills()",
     path: "/",
-    icon: <Fa.FaTerminal />
+    icon: <Fa.FaTerminal />,
+    link: 'skills'
   },
   {
     name: "projects()",
     path: "/",
-    icon: <Fa.FaBorderAll />
+    icon: <Fa.FaBorderAll />,
+    link: 'projects'
   },
   {
     name: "me()",
     path: "/",
-    icon: <Fa.FaHandPeace />
+    icon: <Fa.FaHandPeace />,
+    link: 'about'
   },
   {
     name: "contact()",
     path: "",
-    icon: <Fa.FaRegEnvelope />
+    icon: <Fa.FaRegEnvelope />,
+    link: 'contact'
   },
 ];
 
 
 export default function Navbar({ }: Props) {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const path = router.asPath;
+      if (path.includes('#')) {
+        const target = path.split('#')[1];
+        const element = document.getElementById(target);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    router.events.on('routeChangeComplete', handleScroll);
+
+    return () => {
+      router.events.off('routeChangeComplete', handleScroll);
+    };
+  }, []);
   return (
 
     <motion.aside className={`${open ? "" : ""} fixed md:ml-6 flex items-center h-screen z-10`}
@@ -93,14 +121,16 @@ export default function Navbar({ }: Props) {
             return (
 
               <li key={value.name}>
-                <Link className={`sidebar-icon nav-icon ${open ? "md:justify-start sm:justify-center" : ""} `} href='{ link.path }'>
+
+                <ScrollToLink href={value.link} className={`sidebar-icon nav-icon ${open ? "md:justify-start sm:justify-center" : ""}`} >
                   <div className={`${open ? "" : ""} `}>
                     {value.icon}
                   </div>
                   <div className={`${open ? "scale-100 " : "scale-0 md:hidden"} ml-6 font-bold text-sm duration-300`}>
                     {value.name}
                   </div>
-                </Link>
+                </ScrollToLink>
+
               </li>
 
             )

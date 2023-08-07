@@ -10,18 +10,8 @@ import { SiPhp, SiJavascript, SiHtml5, SiCss3, SiMysql, SiTailwindcss } from "re
 
 type Props = {}
 
-const skillTags = [
-    'HtmlCSS',
-    'SQL',
-    'PHP',
-    'JavaScript',
-    'C/C++',
-    'Frontend',
-    'Backend'
-]
-
 export default function Hero({ }: Props) {
-    const [text, count] = useTypewriter({
+    const [nameText, count] = useTypewriter({
         words: [
             "Hi, ich bin Maikel",
         ],
@@ -29,8 +19,19 @@ export default function Hero({ }: Props) {
         typeSpeed: 100,
         delaySpeed: 2000
     })
+
+    const [servicesText, count2] = useTypewriter({
+        words: [
+            "UI Design",
+            "Beratung",
+            "Refactoring",
+            "Software Entwicklung",
+            "Optimierung",
+        ],
+        loop: true,
+    })
     return (
-        <motion.div className='h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden'
+        <motion.div className='h-screen cursor-default flex flex-col space-y-12 items-center justify-center text-center overflow-hidden'
             initial={{
                 scale: 0
             }}
@@ -41,15 +42,19 @@ export default function Hero({ }: Props) {
                 duration: 0.8
             }}
         >
-            <div className='mb-4'>
-                <h2 className='text-3xl'>
+            <div className='mb-4 grid grid-cols gap-4'>
+                <h2 className='text-3xl font-standard'>
                     ✌️
-                    {text}
+                    {nameText}
                 </h2>
-
-                <h1 className='drop-shadow-lg font-extrabold'>
-                    Web-Entwicklung
+                <h1 className='drop-shadow-lg font-extrabold '>
+                    Software Entwickler
                 </h1>
+                <h3>
+                    <span className='text-[#ff9f32]'>{'>   '}</span>
+                    {servicesText}
+                    <span className='text-[#ff9f32]'>{'   <'}</span>
+                </h3>
             </div>
 
 
@@ -67,20 +72,29 @@ export default function Hero({ }: Props) {
                 <Image
                     src={PictureMe}
                     alt='Maikel Szymanski - Web Entwicklung'
-                    width={500} height={500}
+                    width={200} height={200}
                     className='rounded-full relative h-44 w-44 mx-auto object-cover leading-none '
                 />
             </div>
 
-            <div className='text-center'>
-                <div className="flex flex-row items-center justify-between text-4xl space-x-8">
-                    <SiHtml5 className='text-[#d74b24]'></SiHtml5>
-                    <SiCss3 className='text-[#2548d7]'></SiCss3>
-                    <SiTailwindcss className='text-[#35b3eb]'></SiTailwindcss>
-                    <span className='text-lg font-extrabold'>Full Stack</span>
-                    <SiJavascript className='dark:text-[#ffe732] text-[#ff9f32]'></SiJavascript>
-                    <SiPhp className='text-[#4b568c]'></SiPhp>
-                    <SiMysql className='text-[#e68a10]'></SiMysql>
+            <div className=''>
+                <div className="grid sm:grid-cols-3 text-4xl gap-4">
+                    <div className='flex flex-row space-x-6 items-center justify-center'>
+                        <SiHtml5 className='text-[#d74b24] hover:brightness-125 duration-300'></SiHtml5>
+                        <SiCss3 className='text-[#2548d7] hover:brightness-125 duration-300'></SiCss3>
+                        <SiTailwindcss className='text-[#35b3eb] hover:brightness-125 duration-300'></SiTailwindcss>
+                    </div>
+                    <div className='flex flex-row space-x-6 items-center justify-center'>
+                        <span className='text-lg font-extrabold hover:brightness-125 duration-300 font-console'>Full Stack</span>
+                    </div>
+                    <div className='flex flex-row space-x-6 items-center justify-center'>
+                        <SiJavascript className='dark:text-[#ffe732] text-[#ff9f32] hover:brightness-125 duration-300'></SiJavascript>
+                        <SiPhp className='text-[#4b568c] hover:brightness-125 duration-300'></SiPhp>
+                        <SiMysql className='text-[#e68a10] hover:brightness-125 duration-300'></SiMysql>
+                    </div>
+
+
+
                 </div>
             </div>
 

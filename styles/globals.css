@@ -3,6 +3,31 @@
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: "PressStart2P";
+    src: url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap")
+      format("truetype");
+  }
+  @font-face {
+    font-family: "MajorMonoDisplay";
+    src: url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap")
+      format("truetype");
+  }
+  @font-face {
+    font-family: "FragmentMono";
+    src: url("https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap")
+      format("truetype");
+  }
+  @font-face {
+    font-family: "Poppins";
+    src: url("https://fonts.googleapis.com/css2?family=Fragment+Mono&family=Poppins:wght@400;500;600&display=swap")
+      format("truetype");
+  }
+
+  /* .custom-cursor {
+    @apply fixed w-8 h-8 rounded-full bg-orange pointer-events-none z-50 transition-transform;
+  } */
+
   body {
     @apply bg-[#ecf0f3] text-[#1f2937] tracking-wide;
   }
@@ -11,7 +36,12 @@
   h3,
   h4,
   h5 {
-    @apply font-bold;
+    @apply font-bold font-mono;
+  }
+  p,
+  span,
+  div {
+    @apply font-console;
   }
   h1 {
     @apply text-4xl md:text-6xl;
@@ -26,7 +56,7 @@
       hover:scale-95
       active:scale-90
       transition-all ease-in-out duration-100
-      dark:text-text-light;
+      dark:text-text-light font-standard;
   }
   button.btn .grad {
     @apply absolute
@@ -34,10 +64,6 @@
   }
   p.skilltag {
     @apply rounded-full bg-orange p-1 text-xs font-bold inline-block m-1 cursor-default text-text-dark text-opacity-90;
-  }
-
-  .glass {
-    @apply backdrop-blur bg-grey-light dark:bg-bg-dark;
   }
 
   .twitter {
@@ -63,5 +89,11 @@
     @apply bg-bg-light text-text-dark
   dark:bg-bg-darker hover:dark:text-text-dark dark:text-text-light
   hover:dark:bg-orange hover:bg-orange;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-grey-light/60 dark:bg-bg-dark/60 backdrop-filter backdrop-blur-lg bg-clip-padding;
   }
 }
