@@ -1,117 +1,118 @@
 import React from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { Cursor, useTypewriter } from 'react-simple-typewriter'
+import ReactTypingEffect from 'react-typing-effect';
 import { motion } from 'framer-motion';
 import PictureMe from '../public/assets/ai-portrait-2.jpg'
 import { DiGithubBadge } from 'react-icons/di'
 import { SiPhp, SiJavascript, SiHtml5, SiCss3, SiMysql, SiTailwindcss } from "react-icons/si";
-
+import Portrait from '../public/assets/maikel-portrait-1-grey-square.png'
+import Button from './Shared/Button';
+import { MdEmail } from 'react-icons/md';
+import { Link } from 'react-scroll';
+import { BiSolidMap } from 'react-icons/bi';
+import { FaLinkedin, FaLinkedinIn } from 'react-icons/fa';
+import Skills from './Skills';
+import RevealOnScroll from './Animations/RevealOnScroll';
+import DarkModeToggle from './Shared/DarkModeToggle';
 
 type Props = {}
 
 export default function Hero({ }: Props) {
-    const [nameText, count] = useTypewriter({
-        words: [
-            "Hi, ich bin Maikel",
-        ],
-        // loop: true,
-        typeSpeed: 100,
-        delaySpeed: 2000
-    })
-
-    const [servicesText, count2] = useTypewriter({
-        words: [
-            "UI Design",
-            "Beratung",
-            "Refactoring",
-            "Software Entwicklung",
-            "Optimierung",
-        ],
-        loop: true,
-    })
     return (
-        <motion.div className='h-screen cursor-default flex flex-col space-y-12 items-center justify-center text-center overflow-hidden'
-            initial={{
-                scale: 0
-            }}
-            animate={{
-                scale: 1
-            }}
-            transition={{
-                duration: 0.8
-            }}
-        >
-            <div className='mb-4 grid grid-cols gap-4'>
-                <h2 className='text-3xl font-standard'>
-                    ✌️
-                    {nameText}
-                </h2>
-                <h1 className='drop-shadow-lg font-extrabold '>
-                    Software Entwickler
-                </h1>
-                <h3>
-                    <span className='text-[#ff9f32]'>{'>   '}</span>
-                    {servicesText}
-                    <span className='text-[#ff9f32]'>{'   <'}</span>
-                </h3>
-            </div>
+        <>
+            <div className="container relative mx-auto min-h-screen h-auto flex flex-col pt-32 ">
+                <div className="flex-1 flex flex-col lg:flex-row justify-center items-center gap-4">
+                    <div className="w-full md:w-2/3 mb-6 md:mb-0 flex flex-col">
+                        <RevealOnScroll>
+                            <h6 className="uppercase text-[14px] md:text-[16px] tracking-[2px] font-[600] mb-[20px] md:mb-[30px]">✌️, ich bin
+                                <span className='drop-shadow-md text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-orange-600 inline text-xl font-console ml-2'>Maikel</span>
+                            </h6>
+                            <h1 className='text-2xl lg:text-5xl dark:text-orange-500'>
+                                <span id="type-it" >
+                                    <ReactTypingEffect text={
+                                        [
+                                            'Full Stack Web Developer',
+                                            'Beratung', 'Konzeption', 'Entwicklung',
+                                        ]
+                                    }
+                                        speed={50} staticText={'> '} eraseSpeed={20} typingDelay={700} />
+                                </span>
+                            </h1>
+                        </RevealOnScroll>
 
+                        <RevealOnScroll>
+                            <div className="lg:w-1/2 my-6 ">
+                                <p>
+                                    <b className='themed'>Full Stack Web Entwickler</b> und habe mich auf die Entwicklung von Webseiten und Webanwendungen spezialisiert.
+                                    Hier findest Du Informationen zu meinem Tech Stack, Projekten und weiterer Arbeitserfahrung.
+                                </p>
+                                <p>
+                                    Ich bin auf der Suche nach neuen Herausforderungen und freue mich über Deine Kontaktaufnahme.
+                                </p>
+                            </div>
 
-            <div className='relative group'>
-                <div className="absolute 
-                        -inset-3
-                        animate-border 
-                        opacity-50 
-                        group-hover:opacity-100 
-                        group-hover:duration-500 
-                        duration-700 blur 
-                        rounded-full bg-white
-                        from-grad-l via-grad-mid to-grad-r p-1.5 bg-gradient-to-r
-                        bg-[length:400%_400%] "></div>
-                <Image
-                    src={PictureMe}
-                    alt='Maikel Szymanski - Web Entwicklung'
-                    width={200} height={200}
-                    className='rounded-full relative h-44 w-44 mx-auto object-cover leading-none '
-                />
-            </div>
+                            <div className="pt-[10px] flex flex-row gap-4">
+                                <Link className="px-btn px-btn-theme" to="contactus">Kontakt</Link>
+                                <div className='sm:block md:hidden'>
+                                    <DarkModeToggle />
+                                </div>
+                            </div>
+                        </RevealOnScroll>
 
-            <div className=''>
-                <div className="grid sm:grid-cols-3 text-4xl gap-4">
-                    <div className='flex flex-row space-x-6 items-center justify-center'>
-                        <SiHtml5 className='text-[#d74b24] hover:brightness-125 duration-300'></SiHtml5>
-                        <SiCss3 className='text-[#2548d7] hover:brightness-125 duration-300'></SiCss3>
-                        <SiTailwindcss className='text-[#35b3eb] hover:brightness-125 duration-300'></SiTailwindcss>
-                    </div>
-                    <div className='flex flex-row space-x-6 items-center justify-center'>
-                        <span className='text-lg font-extrabold hover:brightness-125 duration-300 font-console'>Full Stack</span>
-                    </div>
-                    <div className='flex flex-row space-x-6 items-center justify-center'>
-                        <SiJavascript className='dark:text-[#ffe732] text-[#ff9f32] hover:brightness-125 duration-300'></SiJavascript>
-                        <SiPhp className='text-[#4b568c] hover:brightness-125 duration-300'></SiPhp>
-                        <SiMysql className='text-[#e68a10] hover:brightness-125 duration-300'></SiMysql>
                     </div>
 
+                    <div className='lg:w-1/3 flex flex-col'>
+                        <RevealOnScroll>
+                            <div className="relative rounded-full overflow-hidden border-4 border-bg-dark 
+                            dark:border-slate-900 bg-orange-lighter aspect-w-1 aspect-h-1
+                            hover:border-orange-lighter hover:bg-opacity-90 hover:bg-bg-orange-900 shadow-lg
+                            transition-all duration-300 ease-in-out">
+
+                                {/* Bild */}
+                                <Image
+                                    src={Portrait}
+                                    alt="Maikel Szymanski - Web Entwicklung"
+                                    className="object-cover w-full h-full"
+                                />
+
+                                {/* make an overlay div with social media icons in the middle and make it appear on hover, the background should have a opacity of 0.5, icons hsould be white  */}
+                                <div className="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center opacity-0 hover:opacity-100 transition-all duration-300 ease-in-out">
+                                    <div className="flex gap-4">
+                                        <a href="https://github.com/martianmaikel" className=''>
+                                            <DiGithubBadge className="text-white text-6xl hover:text-purple-300 transition-all duration-100 ease-in-out" />
+                                        </a>
+                                        <a href="https://www.linkedin.com/in/maikel-szymanski-bb01241a2/" className=''>
+                                            <FaLinkedinIn className="text-white text-6xl hover:text-linkedin  transition-all duration-100 ease-in-out" />
+                                        </a>
+                                        {/* <a href="">
+                                <DiGithubBadge className="text-white text-8xl" />
+                            </a> */}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div className="flex justify-center items-center mt-4">
+                                <span className='flex gap-2 text-[16px] items-center text-slate-600 dark:text-slate-300'>
+                                    <BiSolidMap />  Germany
+                                </span>
+                            </div>
+                        </RevealOnScroll>
 
 
+                    </div>
                 </div>
+                <RevealOnScroll width='w-full'>
+                    <div id="skills" className='bg-slate-700 text-slate-200 border-4 border-slate-900 dark:border-none dark:bg-opacity-0 rounded-lg my-20'>
+                        <Skills />
+                    </div>
+                </RevealOnScroll>
+
+
+
             </div>
 
-            <button className='btn'>
-                Kontakt
-            </button>
+        </>
 
-            <div className='text-center'>
-                <div className="flex flex-row items-center justify-center">
-
-                    <Link href="https://github.com/martianmaikel/martianmaikel-portfolio" target="_blank" className='text-5xl hover:text-github dark:brightness-200 duration-300'>
-                        <DiGithubBadge />
-                    </Link>
-                </div>
-            </div>
-
-
-        </motion.div>
     )
+
 }

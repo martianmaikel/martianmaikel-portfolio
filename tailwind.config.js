@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: [
     "./app/**/*.tsx",
@@ -16,8 +19,9 @@ module.exports = {
       'bg-lighter': '#e9eef2',
       'space-blue': '#14213d',
       'light-blue': '#004D6F',
-      'orange': '#fca311',
-      'orange-lighter': '#FFC640',
+      'orange': '#e56135',
+      'orange-lighter': '#ff793b',
+      'orange-lightest': '#faa887',
       'grey-light': '#e5e5e5',
       'grad-l': '#ff1900',
       'grad-mid': '#f89b29',
@@ -28,51 +32,19 @@ module.exports = {
       'instagram': '#C13584',
       'github': '#6e5494'
     },
-    fontFamily: {
-      pixel: 'PressStart2P, cursive',
-      mono: 'MajorMonoDisplay, monospace',
-      console: 'FragmentMono, monospace',
-      standard: 'Poppins, sans-serif',
-    },
     extend: {
-      cursor: {
-        // 'default': 'url("/assets/cursor.png"), default',
-        // 'pointer': 'url("/assets/cursor-pointer.png"), pointer',
+      colors: {
+        ...colors,
       },
-      animation: {
-        border: 'border 6s ease infinite',
-        'blob-slow': 'blob 70s infinite',
-        'blob-fast': 'blob 20s infinite',
-        'blob-md': 'blob 40s infinite',
-        blink: 'blink 1s step-end infinite',
+      fontFamily: {
+        pixel: 'PressStart2P, cursive',
+        tektur: 'Tektur, cursive',
+        pacifico: 'Pacifico, cursive',
+        console: 'Fragment Mono, monospace',
+        vina: ['Vina Sans', 'cursive'],
+        standard: 'Poppins, sans-serif',
+        orbitron: 'Orbitron, sans-serif',
       },
-      keyframes: {
-        blob: {
-          "0%": {
-            transform: "scale(1) transform(0px, 0px)",
-          },
-          "33%": {
-            transform: "scale(1.7)",
-          },
-          "66%": {
-            transform: "scale(0.9) transform(0px, 70px)",
-          },
-          "100%": {
-            transform: "scale(1) transform(0px, 0px)",
-          }
-        },
-        border: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        }
-      },
-      backgroundSize: {
-        'size-300': '300% 300%'
-      },
-      backgroundPosition: {
-        'pos-0': '0% 0%',
-        'pos-100': '100% 100%'
-      }
     },
   },
   plugins: [require('tailwind-scrollbar'), require('tailwindcss-filters')],

@@ -1,149 +1,116 @@
-"use client"
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import Link from "next/link";
-import Image from "next/image";
-import ThemeToggle from './Shared/ThemeToggle'
-import SocialIcons from './Shared/Social'
-import { motion } from 'framer-motion';
-import * as Fa from 'react-icons/fa'
-import Logo from '../public/assets/mm-logo-sm.png'
-import { Divide as Hamburger } from 'hamburger-react'
-import ScrollToLink from './Shared/ScrollToLink';
+import { FaRobot } from 'react-icons/fa';
+import { Link } from 'react-scroll';
+import Logo from './Animations/Logo';
+import PopInOnLoad from './Animations/PopInOnLoad';
+import DarkModeToggle from './Shared/DarkModeToggle';
+import { Squash as Hamburger } from 'hamburger-react'// import { Link } from "react-scroll";
 
-// import * as Const from '../const';
+type TabProps = {
+  id: number;
+  name: string;
+  link: string;
+  key: number;
+}
+function Tab(props: TabProps) {
+  return (
+    <li>
+      <Link data-scroll-nav={props.id} smooth={true} to={props.link}>
+        <span className="font-console">{props.name}</span>
+      </Link>
+    </li>
+  );
+}
 
-type Props = {};
+export default function Navbar() {
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
 
-const navContent = [
-  {
-    name: "start()",
-    path: "/",
-    icon: <Fa.FaHome />,
-    link: 'hero'
-  },
-  {
-    name: "skills()",
-    path: "/",
-    icon: <Fa.FaTerminal />,
-    link: 'skills'
-  },
-  {
-    name: "projects()",
-    path: "/",
-    icon: <Fa.FaBorderAll />,
-    link: 'projects'
-  },
-  {
-    name: "me()",
-    path: "/",
-    icon: <Fa.FaHandPeace />,
-    link: 'about'
-  },
-  {
-    name: "contact()",
-    path: "",
-    icon: <Fa.FaRegEnvelope />,
-    link: 'contact'
-  },
-];
-
-
-export default function Navbar({ }: Props) {
-  const [open, setOpen] = useState(false);
-  const router = useRouter();
-
+  const headerMenus = [
+    { id: 0, name: 'start()', scroll_link: 'hero' },
+    { id: 1, name: 'services()', scroll_link: 'services' },
+    { id: 2, name: 'me()', scroll_link: 'me' },
+    { id: 3, name: 'projects()', scroll_link: 'projects' },
+    { id: 4, name: 'contact()', scroll_link: 'contact' }
+  ]
   useEffect(() => {
-    const handleScroll = () => {
-      const path = router.asPath;
-      if (path.includes('#')) {
-        const target = path.split('#')[1];
-        const element = document.getElementById(target);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
+    // Header fixing
+    function headerFixing() {
+      const scrollTop = window.scrollY;
+      const body = document.body;
+
+      if (scrollTop >= 100) {
+        body.classList.add('fixed-header');
+      } else {
+        body.classList.remove('fixed-header');
       }
-    };
+    }
 
-    router.events.on('routeChangeComplete', handleScroll);
+    // Header nav link activation
+    function headerNavActive() {
+      const winTop = window.scrollY;
+      const sections = document.querySelectorAll('[data-scroll-data]');
 
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        const sectionHeight = section.getBoundingClientRect().height;
+        const isActive = winTop >= sectionTop - 10 && winTop < sectionTop - 10 + sectionHeight;
+
+        const navLink = document.querySelector(`[data-scroll-nav="${section.getAttribute('data-scroll-data')}"]`);
+        if (navLink) {
+          if (isActive) {
+            navLink.classList.add('active');
+          } else {
+            navLink.classList.remove('active');
+          }
+        }
+      });
+    }
+    // Scrolling event
+    window.addEventListener('scroll', () => {
+      // Call header fixing method
+      headerFixing();
+      // Call header nav link activation method
+      headerNavActive();
+    });
+
+    // Clean up event listener on component unmount
     return () => {
-      router.events.off('routeChangeComplete', handleScroll);
+      window.removeEventListener('scroll', headerFixing);
+      window.removeEventListener('scroll', headerNavActive);
     };
   }, []);
   return (
+    <>
+      <header className={`main-header fixed left-0 right-0 z-[111] ${isOpenMenu && '!bg-slate-50 dark:!bg-slate-700'}`}>
 
-    <motion.aside className={`${open ? "" : ""} fixed md:ml-6 flex items-center h-screen z-10`}
-      initial={{
-        left: -500
-      }}
-      animate={{
-        left: 0
-      }}
-      transition={{
-        duration: 1.2
-      }}
-      aria-label='sidebar'>
+        <div className="lg:px-20 px-5 mx-auto flex items-center justify-between one-page-nav relative py-5 lg:py-3">
+          <Logo />
 
-      <div className="absolute left-2 top-2 md:hidden z-30">
-        <Hamburger toggled={open} toggle={setOpen} />
-      </div>
 
-      <div className={`${open ? "scale-100 " : "-z-40 opacity-0 scale-0 md:scale-100 md:opacity-100"} 
-        glass p-2 md:rounded-2xl w-screen h-full md:h-auto absolute
-        md:w-auto duration-300 shadow-inner border border-bg-dark/10`}>
+          <PopInOnLoad className={isOpenMenu ? 'sm:hidden md:block' : ''}>
+            <div className={`navbar-collapse flex ${isOpenMenu ? 'menu-open' : ''}`}>
+              <ul className="navbar lg:mx-auto flex flex-col lg:flex-row p-4 lg:p-0">
+                {
+                  headerMenus.map((val, i) => {
+                    return <Tab key={i} id={val.id} name={val.name} link={val.scroll_link} />
+                  })
+                }
+              </ul>
+            </div>
+          </PopInOnLoad>
 
-        <Fa.FaChevronRight className={`${open ? "rotate-180" : ""}
-           absolute cursor-pointer -right-3 -top-0 w-6 h-6 bg-bg-light text-text-dark 
-           rounded-full p-1 duration-700 hover:bg-orange border border-bg-dark/40
-           hidden md:block`}
-          onClick={() => setOpen(!open)}
-        />
+          <PopInOnLoad className={isOpenMenu ? 'sm:hidden md:block' : ''}>
+            <div className="ms-auto hidden lg:flex gap-4">
+              <Link className="px-btn px-btn-theme" data-scroll-nav="4" to="contact">Contact Now</Link>
+              <DarkModeToggle />
+            </div>
+          </PopInOnLoad>
+          <PopInOnLoad className='md:hidden'>
+            <Hamburger toggled={isOpenMenu} toggle={setIsOpenMenu} />
+          </PopInOnLoad>
+        </div>
 
-        {/* <Fa.FaAlignLeft className={`${open ? "rotate-180" : ""}
-           absolute cursor-pointer top-3 w-10 h-10
-            duration-700 hover:bg-orange border border-bg-dark/40
-           block md:hidden`}
-        /> */}
-        <Link href='/' className='flex justify-center items-center'>
-          <Image
-            src={Logo}
-            alt='martianmaikel - Logo'
-            width={200}
-            height={200}
-            className="my-5 h-auto w-12 object-center hover:scale-105 duration-300"
-
-          />
-        </Link>
-        <ul>
-
-          {navContent.map((value, key) => {
-            return (
-
-              <li key={value.name}>
-
-                <ScrollToLink href={value.link} className={`sidebar-icon nav-icon ${open ? "md:justify-start sm:justify-center" : ""}`} >
-                  <div className={`${open ? "" : ""} `}>
-                    {value.icon}
-                  </div>
-                  <div className={`${open ? "scale-100 " : "scale-0 md:hidden"} ml-6 font-bold text-sm duration-300`}>
-                    {value.name}
-                  </div>
-                </ScrollToLink>
-
-              </li>
-
-            )
-          })}
-          <ThemeToggle></ThemeToggle>
-          <SocialIcons></SocialIcons>
-        </ul>
-      </div>
-
-    </motion.aside >
-
+      </header>
+    </>
   )
 }
-
-
-

@@ -1,19 +1,27 @@
-import React from 'react';
+import React from 'react'
 
 type Props = {
-    skillName: string;
-    progress: number;
-};
+    id: {
+        main: string,
+        Icon: React.ReactNode
+    },
+    title: string
+}
 
-const Skill = ({ skillName, progress }: Props) => {
+function Skill(props: Props) {
+    const Icon: React.ReactNode = props.id.Icon
     return (
-        <div className="flex flex-col items-center">
-            <div className="w-24 h-2 bg-gray-300 rounded-full">
-                <div className={`h-full bg-orange rounded-full w-${progress}/10`}></div>
+        <>
+            <div className="w-auto cursor-default">
+                <div className={props.id.main + " feature-box-02 "}>
+                    <div className="icon">
+                        {Icon}
+                    </div>
+                    <h6>{props.title}</h6>
+                </div>
             </div>
-            <span className="mt-2">{skillName}</span>
-        </div>
-    );
-};
+        </>
+    )
+}
 
-export default Skill;
+export default Skill
