@@ -3,6 +3,7 @@ import React from 'react'
 import { FaArrowRight, FaCode, FaFileCode } from 'react-icons/fa'
 import { Project } from '../../data/projects'
 import { motion } from 'framer-motion'
+import { CgMediaLive } from 'react-icons/cg'
 
 function ProjectCard(props: Project) {
     const cardHover = {
@@ -30,19 +31,19 @@ function ProjectCard(props: Project) {
             >
                 <img className="w-full" src={`/assets/projects/${props.headerImage}`} alt={props.name} />
                 <div className="px-6 py-4">
-                    <div className="font-bold text-xl mb-2 flex flex-row gap-x-4">
+                    <div className="font-bold text-xl mb-2 flex flex-col gap-y-4">
                         {props.name}
                         {props.githubUrl ?
                             <span
                                 className="bg-green-600 
-                            rounded-full px-3 text-[8px] font-semibold text-slate-200 "
+                            rounded-full px-3 text-[8px] font-semibold w-fit text-slate-200 "
                             >
                                 Open Source
                             </span>
                             :
                             <span
                                 className="bg-orange-500 
-                            rounded-full px-3 text-[8px] font-semibold text-slate-200 "
+                            rounded-full px-3 text-[8px] font-semibold w-fit text-slate-200 "
                             >
                                 Closed Source
                             </span>
@@ -53,7 +54,7 @@ function ProjectCard(props: Project) {
                         <p className="text-base">
                             {props.description}
                         </p>
-                        <div className="flex flex-row justify-between items-center mt-4 text-2xl">
+                        <div className="flex flex-row gap-x-2 items-center mt-4 text-xl">
                             {props.githubUrl && (
                                 <Link
                                     href={props.githubUrl}
@@ -63,7 +64,15 @@ function ProjectCard(props: Project) {
                                     <FaCode />
                                 </Link>
                             )}
-
+                            {props.productionUrl && (
+                                <Link
+                                    href={props.productionUrl}
+                                    target="_blank"
+                                    className="rounded-full p-4 shadow-md hover:bg-orange-100 dark:hover:bg-slate-700 transition-all duration-300 ease-in-out"
+                                >
+                                    <CgMediaLive />
+                                </Link>
+                            )}
                         </div>
                     </div>
 

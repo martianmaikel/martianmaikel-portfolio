@@ -31,6 +31,11 @@ const calculateAge = () => {
 
 export default function AboutMe({ }: Props) {
 
+    const openCV = () => {
+        const url = 'https://resume.io/r/khfcNDpWt';
+        window.open(url, '_blank');
+    }
+
     return (
         <>
             <div className="container mx-auto  p-16 my-24">
@@ -118,7 +123,7 @@ export default function AboutMe({ }: Props) {
                             </p>
                         </RevealOnScroll>
                         <RevealOnScroll>
-                            <Button className='mt-4' icon={<FaDownload />} disabled={true}>
+                            <Button className='mt-4' icon={<FaDownload />} onClick={openCV}>
                                 Lebenslauf
                             </Button>
                         </RevealOnScroll>
