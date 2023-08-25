@@ -27,7 +27,7 @@ function Textarea(
             font-sans font-normal outline outline-0 focus:outline-0
             disabled:bg-blue-gray-50 disabled:border-0 disabled:resize-none transition-all 
             border-b placeholder-shown:border-blue-gray-200 text-sm pt-4 pb-1.5 border-blue-gray-200 
-            focus:border-gray-900 !resize-none" placeholder=" ">{value}</textarea>
+            focus:border-gray-900 !resize-none" placeholder=" " value={value}>{value}</textarea>
             <label
                 className="flex w-full h-full select-none pointer-events-none absolute 
             left-0 font-normal peer-placeholder-shown:text-blue-gray-500 leading-tight 

@@ -24,6 +24,10 @@ const Input = (
         onChange(inputValue || '');
     }, [inputValue])
 
+    useEffect(() => {
+        setInputValue(value);
+    }, [value])
+
     return (
         <>
 
