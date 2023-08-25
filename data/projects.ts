@@ -31,7 +31,7 @@ export const projectsData: Project[] = [
     {
         id: 2,
         name: "Trackify - Time Tracking",
-        description: "Portfolio website built with React and TypeScript. Hosted on Vercel. Animations with Framer Motion.",
+        description: "Time tracking app for small to medium sized teams. Frontend built with React. Backend built with Laravel and MySQL. ",
         company: "ImmoWert Experts SIV mbH",
         headerImage: "trackify/dashboard.png",
         productionUrl: "https://app.trackify.click/",
