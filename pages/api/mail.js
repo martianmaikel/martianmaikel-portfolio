@@ -5,6 +5,7 @@ const sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const app = express();
+app.set('trust proxy', true);
 
 // Rate Limiting - Erlaubt maximal 5 Anfragen pro Minute von einer IP-Adresse
 const limiter = rateLimit({
