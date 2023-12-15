@@ -7,13 +7,14 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const app = express();
 app.set('trust proxy', true);
 
-// Rate Limiting - Erlaubt maximal 5 Anfragen pro Minute von einer IP-Adresse
 const limiter = rateLimit({
-  windowMs: 60 * 1000, // 1 Minute
-  max: 5, // Maximale Anzahl von Anfragen
+  windowMs: 10 * 60 * 1000,
+  max: 1,
+  keyGenerator: (req) => {
+    return req.headers['x-real-ip'] || req.connection.remoteAddress;
+  },
   message: 'Zu viele Anfragen von dieser IP, bitte versuchen Sie es später erneut.',
 });
-
 app.use(limiter);
 
 // Endpoint für das Senden von E-Mails
