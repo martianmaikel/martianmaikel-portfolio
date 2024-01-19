@@ -30,7 +30,7 @@ export default function Navbar() {
     { id: 1, name: 'services()', scroll_link: 'services' },
     { id: 2, name: 'me()', scroll_link: 'me' },
     { id: 3, name: 'projects()', scroll_link: 'projects' },
-    { id: 4, name: 'contact()', scroll_link: 'contact' }
+    // { id: 4, name: 'contact()', scroll_link: 'contact' }
   ]
   useEffect(() => {
     // Header fixing

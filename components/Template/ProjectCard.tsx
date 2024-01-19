@@ -27,7 +27,7 @@ function ProjectCard(props: Project) {
             <motion.div
                 variants={cardHover}
                 whileHover="hover"
-                className="max-w-sm rounded shadow-lg border-2 border-slate-900"
+                className="max-w-sm h-auto rounded shadow-lg border-2 border-slate-900 flex flex-col"
             >
                 <img className="w-full" src={`/assets/projects/${props.headerImage}`} alt={props.name} />
                 <div className="px-6 py-4">

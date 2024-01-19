@@ -18,7 +18,7 @@ export interface Project {
 }
 
 
-export const projectsData: Project[] = [ 
+export const projectsData: Project[] = [
     {
         id: 1,
         name: "Portfolio Website",
@@ -37,7 +37,24 @@ export const projectsData: Project[] = [
         productionUrl: "https://app.trackify.click/",
         tags: ["React", "JavaScript", "Laravel", "PHP", "REST API"],
     },
+    {
+        id: 3,
+        name: "Wohnflächenberechnung Online",
+        description: "Living area calculation online based on german laws.",
+        company: "ImmoWert Experts SIV mbH",
+        headerImage: "wohnraum-rechner.png",
+        productionUrl: "https://app.wohnraum-rechner.de/",
+        tags: ["React", "Material Tailwind", "Laravel", "PHP", "Inertia JS"]
 
-
+    },
+    {
+        id: 4,
+        name: "Simple Blog - Maikels Blog",
+        description: "Simple Blog built with next js and Sanity.io",
+        headerImage: "maikels-blog.png",
+        githubUrl: "https://github.com/martianmaikel/maikels-blog",
+        productionUrl: "https://maikels-blog.vercel.app/",
+        tags: ["NextJS", "TailwindCSS", "Sanity.io"]
+    }
 
 ]

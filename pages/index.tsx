@@ -24,9 +24,9 @@ const Maikel = () => {
       <div id="projects" data-scroll-data="3">
         <Projects />
       </div>
-      <div id="contact" data-scroll-data="4">
+      {/* <div id="contact" data-scroll-data="4">
         <Contact />
-      </div>
+      </div> */}
       <Footer />
     </>
   )

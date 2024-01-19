@@ -4,9 +4,10 @@ import { motion, useInView, useAnimation } from 'framer-motion';
 interface Props {
     children: React.ReactNode,
     width?: "w-fit" | "w-full",
+    className?: string
 }
 
-export const RevealOnScroll = ({ children, width = "w-fit" }: Props) => {
+export const RevealOnScroll = ({ children, width = "w-fit", className = "" }: Props) => {
     const ref = useRef(null)
     const inView = useInView(ref, { once: true })
     const mainControl = useAnimation()
@@ -30,12 +31,13 @@ export const RevealOnScroll = ({ children, width = "w-fit" }: Props) => {
         }
     }
     return (
-        <div ref={ref} className={`relative ${width}`}>
+        <div ref={ref} className={`relative ${width} ${className}`}>
             <motion.div
                 variants={variants}
                 initial="hidden"
                 animate={mainControl}
                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.5 }}
+                className="relative"
             >
                 {children}
             </motion.div>

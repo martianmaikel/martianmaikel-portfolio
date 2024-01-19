@@ -8,6 +8,7 @@ import RevealOnScroll from './Animations/RevealOnScroll';
 import DottedBackground from './Shared/DottedBackground';
 import { DiGithubBadge } from 'react-icons/di';
 import { BiLogoUpwork } from 'react-icons/bi';
+import { MdMail } from 'react-icons/md';
 
 type Props = {}
 
@@ -67,7 +68,7 @@ export default function AboutMe({ }: Props) {
                                         <div>
                                             <ul className='list-none text-center md:text-left'>
                                                 <li className='font-console text-lg text-slate-500'>Erfahrung</li>
-                                                <li className='font-bold'>+ 3 Jahre</li>
+                                                <li className='font-bold'>+ 4 Jahre</li>
                                             </ul>
                                         </div>
                                         <div>
@@ -123,9 +124,21 @@ export default function AboutMe({ }: Props) {
                             </p>
                         </RevealOnScroll>
                         <RevealOnScroll>
-                            <Button className='mt-4' icon={<FaDownload />} onClick={openCV}>
-                                Lebenslauf
-                            </Button>
+                            <div className="flex gap-6 items-center justify-center">
+                                <Button className='mt-4' icon={<FaDownload />} onClick={openCV}>
+                                    Lebenslauf
+                                </Button>
+                                <div className='flex flex-row gap-x-2 items-center'>
+                                    <MdMail />
+                                    <Link
+                                        href='mailto:maikel.szy@gmail.com'
+                                        className='hover:text-orange-500 transition-all duration-100 ease-in-out hover:scale-[101%]'
+                                    >
+                                        maikel.szy.developer@gmail.com
+                                    </Link>
+                                </div>
+                            </div>
+
                         </RevealOnScroll>
                     </div>
                     <div className="w-full md:w-1/2 flex flex-1 flex-col md:flex-row justify-center items-center">
