@@ -124,7 +124,7 @@ export default function AboutMe({ }: Props) {
                             </p>
                         </RevealOnScroll>
                         <RevealOnScroll>
-                            <div className="flex gap-6 items-center justify-center">
+                            <div className="flex flex-col gap-6 items-center justify-center">
                                 <Button className='mt-4' icon={<FaDownload />} onClick={openCV}>
                                     Lebenslauf
                                 </Button>
