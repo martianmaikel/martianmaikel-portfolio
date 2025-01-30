@@ -52,7 +52,7 @@ export default function Hero({ }: Props) {
                             </div>
 
                             <div className="pt-[10px] flex flex-row gap-4">
-                                <Link className="px-btn px-btn-theme" to="contactus">Kontakt</Link>
+                                <a className="px-btn px-btn-theme" href="https://maikel-szymanski.de/kontakt">Kontakt</a>
                                 <div className='sm:block md:hidden'>
                                     <DarkModeToggle />
                                 </div>

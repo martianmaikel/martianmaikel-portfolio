@@ -23,7 +23,7 @@ function Footer() {
                             <BiLogoUpwork />
                         </Link>
                     </div>
-                    <Link href="">Impressum</Link>
+                    <a href="https://maikel-szymanski.de/impressum">Impressum</a>
                     <p className="text-opacity-75 text-xs">© {currentYear} copyright all rights reserved by Maikel Szymanski</p>
 
                 </div>

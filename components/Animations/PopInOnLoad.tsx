@@ -33,7 +33,7 @@ function PopInOnLoad({ children, className = '' }: Props) {
             className={`${className}`}
             variants={variant}
             initial="hidden"
-            transition={{ delay: 3 }}
+            transition={{ delay: 2, duration: 0.2 }}
             animate="visible"
         >
             {children}

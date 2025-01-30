@@ -101,7 +101,7 @@ export default function Navbar() {
 
           <PopInOnLoad className={isOpenMenu ? 'sm:hidden md:block' : ''}>
             <div className="ms-auto hidden lg:flex gap-4">
-              <Link className="px-btn px-btn-theme" data-scroll-nav="4" to="contact">Contact Now</Link>
+              <a className="px-btn px-btn-theme" href="https://maikel-szymanski.de/kontakt">Contact Now</a>
               <DarkModeToggle />
             </div>
           </PopInOnLoad>

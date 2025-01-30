@@ -24,9 +24,6 @@ const Maikel = () => {
       <div id="projects" data-scroll-data="3">
         <Projects />
       </div>
-      {/* <div id="contact" data-scroll-data="4">
-        <Contact />
-      </div> */}
       <Footer />
     </>
   )
@@ -38,7 +35,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLogoAnimationComplete(true);
-    }, 1800);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
